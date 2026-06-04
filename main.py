@@ -94,13 +94,16 @@ def main():
     df["longitude"] = lngs
     df["lga"] = lgas
 
-    file_name = f"{args.output}{datetime.now()}"
-    df.to_excel(file_name, index=False)
+    df.to_excel(args.output, index=False)
     total = len(df)
     matched = df["lga"].notna().sum()
     print(f"\nDone. {matched}/{total} rows matched to an LGA.")
-    print(f"Saved to: {file_name}")
+    print(f"Saved to: {args.output}")
 
 
 if __name__ == "__main__":
+    import time
+    start = time.time()
     main()
+    end = time.time()
+    print(f"Time Taken: {end - start:.2f} Seconds")
